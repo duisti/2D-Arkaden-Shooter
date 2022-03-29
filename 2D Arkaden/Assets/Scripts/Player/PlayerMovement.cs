@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     LayerMask layerCheck;
     PlayerStats stats;
-
     private void Awake()
     {
         if (stats == null)
@@ -129,6 +128,17 @@ public class PlayerMovement : MonoBehaviour
         lastVelocity = newVelocity;
     }
 
+    Vector2 CollisionReflection(Vector2 closestPoint, Vector2 _velocity)
+    {
+        Vector2 BounceVelocity = Vector2.zero;
+        float ourSpeed = Mathf.Min(Mathf.Abs(_velocity.x) + Mathf.Abs(_velocity.y), MaxSpeed);
+        var heading = (Vector2)transform.position - closestPoint;
+        var distance = heading.magnitude;
+        var direction = heading / distance;
+        BounceVelocity = direction * ourSpeed;
+        return BounceVelocity;
+    }
+
     void CheckCollision() //false = no collision, we only check terrain/objects collision, enemy collisions have their own checks
     {
         //get a list of colliders matching our layermask, and handle the closest contact point only
@@ -145,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
                     contactCollider = contact.collider;
                 }
             }
+            //Debug.LogError("Paused! Check!");
             //damage the player on collision
             //Collision damage equals CollisionDamage(turned in to per second) plus (Damage*LerpedVelocity) being applied to our craft, so we multiply with deltatime
             //lerping, because we don't want faster planes to be able to take more collision damage on hit. We determine collision damage from other statistics instead.
@@ -158,26 +169,8 @@ public class PlayerMovement : MonoBehaviour
             //we'll apply some velocity towards the direction we want to be pushed towards
 
             //Overall, my brain not enough to make this system perfect. But it's good enough now.
-            Vector2 newVelocity = lastVelocity;
-            float magicNumber = 1.5f;
-            if (Mathf.Abs(closestPoint.y - LastPositions[1].y) < Mathf.Abs(closestPoint.x - LastPositions[1].x)) //if vertical distance is longer than horizontal, we manipulate our hz velocity
-            {
-                Debug.Log("Horizontal collision!");
-                float applyX = (newVelocity.x) * -1;
-                applyX *= magicNumber; //for some more OOMF
-                applyX = Mathf.Clamp(applyX, -MaxSpeed, MaxSpeed);
-                newVelocity = new Vector2(applyX, newVelocity.y);
-                //get distance between floats: Mathf.Abs(targetX - positionX)
-            }
-            else if (Mathf.Abs(closestPoint.x - LastPositions[1].x) < Mathf.Abs(closestPoint.y - LastPositions[1].y)) //same as aboved, but with horizontal in to vertical
-            {
-
-                Debug.Log("Vertical collision!");
-                float applyY = (newVelocity.y) * -1;
-                applyY *= magicNumber; //for some more OOMF
-                applyY = Mathf.Clamp(applyY, -MaxSpeed, MaxSpeed);
-                newVelocity = new Vector2(newVelocity.x, applyY);
-            }
+            Vector2 newVelocity = CollisionReflection(closestPoint, lastVelocity);
+            
             //move to a previous position one frame away to ensure we dont get owned
             //we still get owned if we idle and hit an object, and we take some damage over time
             transform.position = LastPositions[1];
@@ -213,60 +206,3 @@ public class PlayerMovement : MonoBehaviour
 }
 
 
-/* A code graveyard here
- * OLD CHECKCOLLISION
-    void CheckCollision() //false = no collision, we only check terrain/objects collision, enemy collisions have their own checks
-    {
-        //get a list of colliders matching our layermask, and handle the closest contact point only
-        var hits = Physics2D.CircleCastAll(transform.position, GetComponent<CircleCollider2D>().radius, Vector2.zero, 0, layerCheck);
-        if (hits.Length != 0)
-        {
-            Vector2 closestPoint = hits[0].point;
-            foreach (RaycastHit2D contact in hits)
-            {
-                if (Vector2.Distance(contact.point, transform.position) < Vector2.Distance(closestPoint, transform.position)) //check if distance between is shorter than presumed #1 in the list
-                {
-                    closestPoint = contact.point;
-                }
-            }
-            stats.DamageHealth(stats.CollisionDamage); //damage the player on collision
-            //we want to flip our velocity to bounce us back safely, so we need to do some determinations on how we collided.
-            //So we get a bounce-back like as if you'd throw a tennis ball towards the ground
-            //we'll apply some velocity towards the direction we want to be pushed towards
-            Vector2 newVelocity = lastVelocity;
-            float magicMultiplier = 5f; //our magic number to multiply distance between collision points in calcs to ensure we always get pushed a lot
-            if (Mathf.Abs(closestPoint.y - LastPositions[1].y) < Mathf.Abs(closestPoint.x - LastPositions[1].x)) //if vertical distance is longer than horizontal, we manipulate our hz velocity
-            {
-                Debug.Log("Horizontal collision!");
-                float distValue = Mathf.Abs(closestPoint.x - LastPositions[1].x);
-                //float distValue = 0;
-                if (LastPositions[1].x > closestPoint.x) distValue *= -1; //if last position coord was higher, we need to flip value as otherwise we just get pushed further in to the collision object
-                float applyX = (newVelocity.x + distValue * magicMultiplier) * -1;
-                applyX = Mathf.Clamp(applyX, -MaxSpeed, MaxSpeed);
-                newVelocity = new Vector2(applyX, newVelocity.y);
-                //get distance between floats: Mathf.Abs(targetX - positionX)
-            }
-            else if (Mathf.Abs(closestPoint.x - LastPositions[1].x) < Mathf.Abs(closestPoint.y - LastPositions[1].y)) //same as aboved, but with horizontal in to vertical
-            {
-
-                Debug.Log("Vertical collision!");
-                float distValue = Mathf.Abs(closestPoint.y - LastPositions[1].y);
-                //float distValue = 0;
-                if (LastPositions[1].y > closestPoint.y) distValue *= -1; //if last position coord was higher, we need to flip value as otherwise we just get pushed further in to the collision object
-                float applyY = (newVelocity.y + distValue * magicMultiplier) * -1;
-                applyY = Mathf.Clamp(applyY, -MaxSpeed, MaxSpeed);
-                newVelocity = new Vector2(newVelocity.x, applyY);
-            }
-            //move with new velo values for one frame to ensure we don't hit again in the same frame
-            Vector2 newCoords = this.transform.position += (Vector3)newVelocity * Time.deltaTime;
-            //clamp x and y inside camerabounds
-            newCoords.x = Mathf.Clamp(newCoords.x, -CameraBounds.bounds.extents.x + CameraBounds.transform.position.x, CameraBounds.bounds.extents.x + CameraBounds.transform.position.x);
-            newCoords.y = Mathf.Clamp(newCoords.y, -CameraBounds.bounds.extents.y + CameraBounds.transform.position.y, CameraBounds.bounds.extents.y + CameraBounds.transform.position.y);
-            this.transform.position = newCoords;
-            lastVelocity = newVelocity;
-            //lets push our player based on this change, for a couple frames
-
-        }
-    }
- * 
-*/

@@ -47,6 +47,9 @@ public class FitBoundsToCamera : MonoBehaviour
         { 
             //adjust. Based on transform size, since if we have scale up/down powerups, they will modify localscale instead of collider radius (collider radius gets scaled up, but values of collier stay same).
             playerSizeAdjustment = PlayersCollider.radius * ((PlayersCollider.transform.localScale.x + PlayersCollider.transform.localScale.y) / 2);
+        } else
+        {
+            FindPlayerCollider();
         }
         float ySize = AttachedCamera.orthographicSize * 2;
         float xSize = ySize * Screen.width / Screen.height;

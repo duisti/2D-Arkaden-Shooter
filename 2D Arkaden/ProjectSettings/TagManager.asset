@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CameraBounds
+  - CameraAndPlayerPivot
   layers:
   - Default
   - TransparentFX

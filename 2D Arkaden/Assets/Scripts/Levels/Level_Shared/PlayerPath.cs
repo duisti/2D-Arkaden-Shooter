@@ -29,7 +29,11 @@ public class PlayerPath : MonoBehaviour
         }
         if (TransformToMove == null)
         {
-            Debug.LogError("Please set the transform to move! (PlayerPath.cs)");
+            TransformToMove = GameObject.FindGameObjectWithTag("CameraAndPlayerPivot").GetComponent<Transform>();
+            if (TransformToMove == null)
+            {
+                Debug.LogError("Couldn't find Transform to Move automatically! Please set the transform to move! (PlayerPath.cs)");
+            }
         }
         //lets move our list of waypoints in to a separate gameobject not attached to anything, because otherwise the points might keep moving as player moves...
 

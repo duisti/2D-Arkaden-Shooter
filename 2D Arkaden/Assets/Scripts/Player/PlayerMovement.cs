@@ -20,10 +20,13 @@ public class PlayerMovement : MonoBehaviour
                          //(virtual joystick, testing with keyboard etc..)
     BoxCollider2D CameraBounds;
 
+    [HideInInspector]
     [Tooltip("How far do we track last positions in to frames? Has no effect on actual collision reverse calculations, just assigns the buffer!")]
-    public int PositionsBuffer = 10;
+    public int PositionsBuffer = 3;
+    [HideInInspector]
     public List<Vector2> LastPositions = new List<Vector2>();
     [SerializeField]
+    [Tooltip("What layers are considered for the collision check?")]
     LayerMask layerCheck;
     PlayerStats stats;
     private void Awake()

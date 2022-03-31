@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CameraBounds
   - CameraAndPlayerPivot
+  - Wallpaper
   layers:
   - Default
   - TransparentFX

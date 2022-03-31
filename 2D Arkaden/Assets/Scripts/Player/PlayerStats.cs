@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    //health & damage modifiers
+    //health, heat & damage modifiers
     public float MaxHealth = 100f; // we never want to go over this, so most likely will be your current health. Keep it above zero in editor so we don't insta die
     public float Health = 100f;
+
+    public float MaxHeat = 100f;
+    public float Heat = 0f;
 
     public float CollisionDamage = 5f; //default, actually controlled & overridden from GameMaster + modifiers
 

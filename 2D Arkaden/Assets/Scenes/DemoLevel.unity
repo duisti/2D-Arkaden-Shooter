@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemoDungeon_Backslide
       objectReference: {fileID: 0}
+    - target: {fileID: 6429687636763952918, guid: 7e7cf945804bca142b2b70be50c24c3e, type: 3}
+      propertyPath: m_SortingOrder
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 6429687636763952919, guid: 7e7cf945804bca142b2b70be50c24c3e, type: 3}
       propertyPath: m_RootOrder
       value: 3

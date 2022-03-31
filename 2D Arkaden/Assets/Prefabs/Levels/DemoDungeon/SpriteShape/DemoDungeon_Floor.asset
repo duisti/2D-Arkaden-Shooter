@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: DemoDungeon_Floor
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -120
-    m_End: 120
+  - m_Start: -110
+    m_End: 110
     m_Order: 0
     m_Sprites:
-    - {fileID: -59976084, guid: 5c3def43d34380c49a638bd754352519, type: 3}
-  - m_Start: -240
-    m_End: -120
-    m_Order: 1
+    - {fileID: 21300000, guid: 16a3363dd43dfd847b60e5b7fe2bb060, type: 3}
+  - m_Start: -250
+    m_End: -110
+    m_Order: 0
     m_Sprites:
-    - {fileID: 344402887, guid: 5c3def43d34380c49a638bd754352519, type: 3}
+    - {fileID: 21300000, guid: 3ccc66f77ca5cfb4590d49a2762f149a, type: 3}
   m_FillTexture: {fileID: 2800000, guid: 6813156cb5b959c44a935ab503df17d8, type: 3}
   m_CornerSprites:
   - m_CornerType: 0

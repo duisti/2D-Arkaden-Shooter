@@ -58,9 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     void DEBUG_ReadInput()
     {
-        XInput = Mathf.Clamp(Input.GetAxis("Horizontal"), -1f, 1f);
-        YInput = Mathf.Clamp(Input.GetAxis("Vertical"), -1f, 1f); //clamp value between -1 and 1, because apparently for keyboard controls for example the axis goes up to 3
-                                                                  //and i'm lazy and CBA changing it.
+        XInput = ControlManager.instance.XInput;
+        YInput = ControlManager.instance.YInput;
     }
     void Update()
     {

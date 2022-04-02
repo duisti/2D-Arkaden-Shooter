@@ -10,6 +10,8 @@ public class PlayerStats : MonoBehaviour
 
     public float MaxHeat = 100f;
     public float Heat = 0f;
+    public float HeatDissipation = 20f; // per second
+    public bool Overheated = false;
 
     public float CollisionDamage = 5f; //default, actually controlled & overridden from GameMaster + modifiers
 
@@ -51,6 +53,20 @@ public class PlayerStats : MonoBehaviour
         }
         //safety measure, usually damage alone should kill us
         dead = CheckDeath();
+        HandleHeat();
+    }
+
+    void HandleHeat()
+    {
+        if (Overheated || Heat >= MaxHeat)
+        {
+            Overheated = true;
+            if (Heat <= MaxHeat / 2)
+            {
+                Overheated = false;
+            }
+        }
+        Heat = Mathf.Max(0, Heat - Time.deltaTime);
     }
 
     void DoDeath()
@@ -80,5 +96,10 @@ public class PlayerStats : MonoBehaviour
     public void HealHealth(float amount)
     {
         Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
+    }
+
+    public void ModifyHeat(float amount)
+    {
+        Heat = Mathf.Max(0, Heat + amount);
     }
 }

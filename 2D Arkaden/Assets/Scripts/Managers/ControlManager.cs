@@ -7,6 +7,8 @@ public class ControlManager : MonoBehaviour
     // Start is called before the first frame update
     public static ControlManager instance;
 
+    int virtualButtonPushes = 0;
+
     public float XInput;
     public float YInput;
     public bool Fire1;
@@ -33,6 +35,30 @@ public class ControlManager : MonoBehaviour
         VJoyStickInput = new Vector2(x, y);
     }
 
+    public void ButtonPush(bool pressed, string inputName)
+    {
+        if (pressed)
+        {
+            virtualButtonPushes++;
+        }
+        else virtualButtonPushes = Mathf.Max(0, virtualButtonPushes - 1);
+        switch (inputName)
+        {
+            case "Fire1":
+                Fire1 = pressed;
+                break;
+            case "Fire2":
+                Fire2 = pressed;
+                break;
+            case "Fire3":
+                Fire3 = pressed;
+                break;
+            default:
+                break;
+        }
+        print("Pressed: " + inputName + ", " + virtualButtonPushes);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -47,8 +73,11 @@ public class ControlManager : MonoBehaviour
             XInput = Mathf.Clamp(VJoyStickInput.x, -1f, 1f);
             YInput = Mathf.Clamp(VJoyStickInput.y, -1f, 1f);
         }
-        Fire1 = Input.GetButton("Fire1");
-        Fire2 = Input.GetButton("Fire2");
-        Fire3 = Input.GetButton("Fire3");
+        if (virtualButtonPushes == 0)
+        {
+            Fire1 = Input.GetButton("Fire1");
+            Fire2 = Input.GetButton("Fire2");
+            Fire3 = Input.GetButton("Fire3");
+        }
     }
 }

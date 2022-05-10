@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         CameraBounds = GameObject.FindGameObjectWithTag("CameraBounds").GetComponent<BoxCollider2D>();
     }
 
-    void DEBUG_ReadInput()
+    void ReadInput()
     {
         XInput = ControlManager.instance.XInput;
         YInput = ControlManager.instance.YInput;
@@ -67,10 +67,8 @@ public class PlayerMovement : MonoBehaviour
         {
             FindCameraBounds();
         }
-        //debug, editor mode only, read keyboard input
-#if UNITY_EDITOR
-        DEBUG_ReadInput();
-#endif
+
+        ReadInput();
         //When XInput and YInput has been set, apply values
         ApplyValues();
         //track last positions

@@ -11,6 +11,8 @@ public class WeaponFireScript : MonoBehaviour
 
     public float HeatGenerated = 1f;
 
+    public string inputHotkey = "Fire1"; //Fire1, Fire2, Fire3
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,16 @@ public class WeaponFireScript : MonoBehaviour
         if (Prefab == null) return;
         if (Stats == null) return;
         cooldownTimer = Mathf.Max(0, cooldownTimer - Time.deltaTime);
-        if (ControlManager.instance.Fire1 && cooldownTimer <= 0)
+        //some repetition here because i got lazy (could've made a struct but cba)
+        if (inputHotkey == "Fire1" && ControlManager.instance.Fire1 && cooldownTimer <= 0)
+        {
+            FireWeapon();
+        }
+        if (inputHotkey == "Fire2" && ControlManager.instance.Fire2 && cooldownTimer <= 0)
+        {
+            FireWeapon();
+        }
+        if (inputHotkey == "Fire3" && ControlManager.instance.Fire3 && cooldownTimer <= 0)
         {
             FireWeapon();
         }

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
+    public GameObject Root;
     public Image JoyStickPivot;
     Image joystick;
     [SerializeField]
@@ -35,11 +35,11 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         // if we are on mobile or editor display virtual joystick, else hide it (PC build) and do not proceed
         if (Application.isMobilePlatform || Application.isEditor)
         {
-            JoyStickPivot.gameObject.SetActive(true);
+            Root.SetActive(true);
             isEnabled = true;
         } else
         {
-            JoyStickPivot.gameObject.SetActive(false);
+            Root.SetActive(false);
             isEnabled = false;
             return;
         }
@@ -48,6 +48,20 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     void RelayData(float x, float y)
     {
         ControlManager.instance.SetVJoyStickInput(x, y);
+    }
+
+    //need to copy-paste'ish because unity's event system can only take 1 arg through the editor
+    public void FireButton1(bool pressed) //"Fire1, Fire2, Fire3"
+    {
+        ControlManager.instance.ButtonPush(pressed, "Fire1");
+    }
+    public void FireButton2(bool pressed) //"Fire1, Fire2, Fire3"
+    {
+        ControlManager.instance.ButtonPush(pressed, "Fire2");
+    }
+    public void FireButton3(bool pressed) //"Fire1, Fire2, Fire3"
+    {
+        ControlManager.instance.ButtonPush(pressed, "Fire3");
     }
 
     public void OnDrag(PointerEventData data)
@@ -82,5 +96,6 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         //zero out the joystick on release
         InputDir = Vector2.zero;
         joystick.rectTransform.anchoredPosition = Vector2.zero;
+        RelayData(InputDir.x, InputDir.y);
     }
 }

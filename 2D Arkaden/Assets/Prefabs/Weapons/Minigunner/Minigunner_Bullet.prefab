@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1586243940}
   - component: {fileID: 8331167907262408686}
   - component: {fileID: 1586243941}
+  - component: {fileID: 2799071923161347639}
   m_Layer: 13
   m_Name: Minigunner_Bullet
   m_TagString: Untagged
@@ -131,7 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e193f434c6e1d9419bb272592f5145f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollisionDetection: 1
   Speed: 15
+  ownerScript: {fileID: 0}
+  weaponStats: {fileID: 0}
 --- !u!114 &8331167907262408686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +164,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Owner: {fileID: 0}
   AttachToOwner: 0
+--- !u!58 &2799071923161347639
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038380688938714615}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.06

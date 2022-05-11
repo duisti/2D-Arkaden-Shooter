@@ -47,7 +47,7 @@ public class WeaponFireScript : MonoBehaviour
             OwnerOfThis script = g.GetComponent<OwnerOfThis>();
             if (script != null)
             {
-                script.Setup(Stats.gameObject);
+                script.Setup(this.gameObject);
             }
             AttachToSpawner attach = g.GetComponent<AttachToSpawner>();
             if (attach != null)

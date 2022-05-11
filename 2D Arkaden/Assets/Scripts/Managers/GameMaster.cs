@@ -15,6 +15,11 @@ public class GameMaster : MonoBehaviour
 
     public GameObject CurrentPlayerObject;
 
+    float currentLevelScore = 0f;
+    float savedLevelScore = 0f;
+
+    float totalScore = 0f;
+
     private void Awake()
     {
         if (instance != null)
@@ -34,5 +39,41 @@ public class GameMaster : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SaveLevelScore()
+    {
+        savedLevelScore = currentLevelScore;
+    }
+
+    public void ResetLevelScore()
+    {
+        currentLevelScore = 0f;
+        savedLevelScore = 0f;
+    }
+
+    public float GetLevelScore()
+    {
+        return currentLevelScore;
+    }
+
+    public void AddLevelScore(float amount)
+    {
+        currentLevelScore += amount;
+    }
+
+    public void SetLevelScore(float amount)
+    {
+        currentLevelScore = amount;
+    }
+
+    public void SaveTotalScore()
+    {
+        totalScore += currentLevelScore;
+    }
+
+    public float GetTotalScore()
+    {
+        return totalScore;
     }
 }

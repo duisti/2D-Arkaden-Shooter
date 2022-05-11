@@ -66,7 +66,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public void OnDrag(PointerEventData data)
     {
-        if (!enabled) return;
+        if (!isEnabled) return;
 
         Vector2 pos = Vector2.zero;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(JoyStickPivot.rectTransform, data.position, data.pressEventCamera, out pos);
@@ -86,13 +86,13 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData data)
     {
-        if (!enabled) return;
+        if (!isEnabled) return;
         OnDrag(data);
     }
 
     public void OnPointerUp(PointerEventData data)
     {
-        if (!enabled) return;
+        if (!isEnabled) return;
         //zero out the joystick on release
         InputDir = Vector2.zero;
         joystick.rectTransform.anchoredPosition = Vector2.zero;

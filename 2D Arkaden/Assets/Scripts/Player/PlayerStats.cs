@@ -19,6 +19,8 @@ public class PlayerStats : MonoBehaviour
     public float MaxSpeed = 5f;
     public float Acceleration = 30f;
 
+    float heatStopTimer = 0f;
+
     //equipment stuff
 
     [SerializeField]
@@ -66,7 +68,14 @@ public class PlayerStats : MonoBehaviour
                 Overheated = false;
             }
         }
-        Heat = Mathf.Max(0, Heat - Time.deltaTime);
+        if (heatStopTimer > 0)
+        {
+            heatStopTimer -= Time.deltaTime;
+        }
+        else
+        {
+            Heat = Mathf.Max(0, Heat - Time.deltaTime * HeatDissipation);
+        }
     }
 
     void DoDeath()
@@ -98,8 +107,9 @@ public class PlayerStats : MonoBehaviour
         Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
     }
 
-    public void ModifyHeat(float amount)
+    public void ModifyHeat(float amount, float stopTime)
     {
+        heatStopTimer = stopTime + 0.25f; // ideally weapon cooldown plus .25 seconds
         Heat = Mathf.Max(0, Heat + amount);
     }
 }

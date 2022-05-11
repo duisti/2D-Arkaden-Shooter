@@ -11,7 +11,7 @@ public class WeaponStats : MonoBehaviour
     [Tooltip("0-1 value percentage based. 0.3 would mean 30% of the damage value is also applied to main target on top of splash. Not used if radius = 0")]
     public float SplashPercent = 0f; //0-1 value percentage based. 0.3 would mean 30% of the damage value is also applied to main target on top of splash. Not used if radius = 0
     [Tooltip("if splash, does damage fall off from center 100% to edge 0%?")]
-    public bool FallOff = true; //if splash, does damage fall off from center 100% to edge 0%?
+    public bool FallOff = false; //if splash, does damage fall off from center 100% to edge 0%?
     public GameObject OnDeathPrefab; //can be an effect, or another projectile etc
     // Start is called before the first frame update
     void Start()

@@ -14,6 +14,9 @@ public class GameMaster : MonoBehaviour
     public float CollisionDamageBase = 5f;
 
     public GameObject CurrentPlayerObject;
+    public GameObject PlayerScreenObject;
+    [HideInInspector]
+    public PlayerPath PlayerPathScript;
 
     float currentLevelScore = 0f;
     float savedLevelScore = 0f;

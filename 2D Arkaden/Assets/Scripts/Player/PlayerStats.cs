@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     public float HeatDissipation = 20f; // per second
     public bool Overheated = false;
 
-    public float CollisionDamage = 5f; //default, actually controlled & overridden from GameMaster + modifiers
+    public float CollisionDamage = 7.5f; //default, actually controlled & overridden from GameMaster + modifiers
 
     //mobility stats
     public float MaxSpeed = 5f;
@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour
     public void Initialize()
     {
         //here we could read values from some master gameobject to set values, if we want to
-        CollisionDamage = GameMaster.instance.CollisionDamageBase;
+        //CollisionDamage = GameMaster.instance.CollisionDamageBase;
     }
 
     public void SetMaxHealth(float value)

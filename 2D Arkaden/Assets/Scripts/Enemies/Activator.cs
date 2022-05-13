@@ -15,6 +15,8 @@ public class Activator : MonoBehaviour
 
     public float ActivatorDeactivateMultiplier = 10f;
 
+    public bool zeroTheY = true;
+
     List<GameObject> childrenGameObjects = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,17 @@ public class Activator : MonoBehaviour
     void Init()
     {
         if (initialized || GameMaster.instance == null) return;
+        if (zeroTheY)
+        {
+            float yValue = transform.position.y;
+            this.transform.position = new Vector3(this.transform.position.x, 0f, this.transform.position.z);
+            foreach (Transform child in transform)
+            {
+                Vector3 pos = child.transform.position;
+                pos = new Vector3(child.transform.position.x, yValue + child.transform.position.y, 0);
+                child.transform.position = pos;
+            }
+        }
         foreach (Transform t in this.transform.GetComponentsInChildren<Transform>())
         {
             if (t != this.transform)

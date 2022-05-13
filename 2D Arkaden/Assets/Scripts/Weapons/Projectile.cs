@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
     Vector2 startPos;
     [Tooltip("False = Ignore OOB")]
     public bool outOfBounds = false;
-    float outOfBoundsTimer = 5f;
+    float outOfBoundsTimer = 3f;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,7 +34,12 @@ public class Projectile : MonoBehaviour
         Init();
         if (outOfBounds)
         {
-            outOfBoundsTimer = outOfBoundsTimer / Speed;
+            float screenMoveBoost = 0f;
+            if (GameMaster.instance.PlayersPath != null)
+            {
+                screenMoveBoost = GameMaster.instance.PlayersPath.currentSpeed;
+            }
+            outOfBoundsTimer = outOfBoundsTimer / Speed + screenMoveBoost;
             outOfBounds = false;
         }else
         {
@@ -76,19 +81,7 @@ public class Projectile : MonoBehaviour
         Vector2 originalPos = transform.position;
         if (GameMaster.instance != null)
         {
-            if (GameMaster.instance.CameraBounds != null)
-            {
-                //float theLargerNumber = Mathf.Max(GameMaster.instance.CameraBounds.size.x, GameMaster.instance.CameraBounds.size.y);
-                //theLargerNumber = Mathf.Max(theLargerNumber, (GameMaster.instance.CameraBounds.size.x + GameMaster.instance.CameraBounds.size.y) / 2f);
-                //if (Vector2.Distance(startPos, transform.position) >= theLargerNumber * 1.5f)
-                //{
-                //    DestroyThis();
-                //}
-                if (!GameMaster.instance.CameraBounds.bounds.Contains((Vector3)originalPos + new Vector3(0, 0, GameMaster.instance.CameraBounds.transform.position.z)))
-                {
-                    outOfBounds = true;
-                }
-            }
+            outOfBounds = GameMaster.instance.IsOutOfBounds(originalPos);
         }
         float stepDist = Speed * Time.deltaTime;
         Vector2 destinationPos = transform.position + transform.right * stepDist;

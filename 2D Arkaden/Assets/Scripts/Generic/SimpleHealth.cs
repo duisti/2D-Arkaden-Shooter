@@ -38,7 +38,7 @@ public class SimpleHealth : MonoBehaviour
     void OnDeath()
     {
         dead = true;
-        if (DeathPrefabs.Count != 0)
+        if (DeathPrefabs.Count != 0 && !GameMaster.instance.IsOutOfBounds(transform.position))
         {
             foreach (GameObject g in DeathPrefabs)
             {

@@ -10,7 +10,8 @@ public class PlayerPath : MonoBehaviour
     [SerializeField]
     Transform nextPoint;
     int travelCount = 0; //to track position in list
-    float currentSpeed = 0;
+    [HideInInspector]
+    public float currentSpeed = 0;
     [SerializeField]
     float targetSpeed = 3;
     [SerializeField]
@@ -19,6 +20,7 @@ public class PlayerPath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameMaster.instance != null) GameMaster.instance.PlayersPath = this;
         //if travelpoints is empty (designer being lazy!), try to autopopulate based on children
         if (WayPoints.Count == 0)
         {

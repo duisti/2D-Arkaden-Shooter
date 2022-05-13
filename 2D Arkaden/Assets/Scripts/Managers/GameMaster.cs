@@ -21,6 +21,8 @@ public class GameMaster : MonoBehaviour
     public PlayerPath PlayerPathScript;
     [HideInInspector]
     public BoxCollider2D CameraBounds;
+    [HideInInspector]
+    public PlayerPath PlayersPath;
 
     float currentLevelScore = 0f;
     float savedLevelScore = 0f;
@@ -86,5 +88,24 @@ public class GameMaster : MonoBehaviour
     public float GetTotalScore()
     {
         return totalScore;
+    }
+
+    public bool IsOutOfBounds(Vector3 point)
+    {
+        if (CameraBounds != null)
+        {
+            //float theLargerNumber = Mathf.Max(GameMaster.instance.CameraBounds.size.x, GameMaster.instance.CameraBounds.size.y);
+            //theLargerNumber = Mathf.Max(theLargerNumber, (GameMaster.instance.CameraBounds.size.x + GameMaster.instance.CameraBounds.size.y) / 2f);
+            //if (Vector2.Distance(startPos, transform.position) >= theLargerNumber * 1.5f)
+            //{
+            //    DestroyThis();
+            //}
+            if (CameraBounds.bounds.Contains((Vector3)point + new Vector3(0, 0, CameraBounds.transform.position.z)))
+            {
+                return false;
+            }
+        }
+        else return false;
+        return true;
     }
 }

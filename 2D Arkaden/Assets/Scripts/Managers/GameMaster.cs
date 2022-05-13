@@ -16,7 +16,11 @@ public class GameMaster : MonoBehaviour
     public GameObject CurrentPlayerObject;
     public GameObject PlayerScreenObject;
     [HideInInspector]
+    public GameObject PlayersCamera;
+    [HideInInspector]
     public PlayerPath PlayerPathScript;
+    [HideInInspector]
+    public BoxCollider2D CameraBounds;
 
     float currentLevelScore = 0f;
     float savedLevelScore = 0f;
@@ -41,7 +45,11 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayersCamera == null)
+        {
+            PlayersCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            CameraBounds = GameObject.FindGameObjectWithTag("CameraBounds").GetComponent<BoxCollider2D>();
+        }
     }
 
     public void SaveLevelScore()

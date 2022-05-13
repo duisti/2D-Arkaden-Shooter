@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 2.5
-  FriendlyFire: 0
-  OnDeathPrefab: {fileID: 0}
+  OnDeathPrefab: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d,
+    type: 3}
   CollidesWith:
     serializedVersion: 2
     m_Bits: 6144
@@ -117,7 +117,8 @@ AudioSource:
   m_GameObject: {fileID: 4602943614823844543}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6098256219429504224, guid: 558e26d68d17b0643a51d8c1a4aefe92, type: 2}
+  OutputAudioMixerGroup: {fileID: -6098256219429504224, guid: 558e26d68d17b0643a51d8c1a4aefe92,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: e2348af098dd89645935e0995f535a6d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5

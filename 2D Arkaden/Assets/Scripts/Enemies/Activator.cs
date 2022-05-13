@@ -13,6 +13,8 @@ public class Activator : MonoBehaviour
     bool activated = false;
     bool deactivated = false;
 
+    public float ActivatorDeactivateMultiplier = 10f;
+
     List<GameObject> childrenGameObjects = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -38,8 +40,8 @@ public class Activator : MonoBehaviour
             print("1");
             if (GameMaster.instance.PlayerScreenObject != null)
             {
-                MainCameraObject = GameMaster.instance.PlayerScreenObject.GetComponentInChildren<Camera>().gameObject;
-                script = MainCameraObject.GetComponentInChildren<FitBoundsToCamera>();
+                MainCameraObject = GameObject.FindGameObjectWithTag("MainCamera");
+                script = GameObject.FindGameObjectWithTag("CameraBounds").GetComponent<FitBoundsToCamera>();
             }
             else return;
             print("2");
@@ -75,7 +77,7 @@ public class Activator : MonoBehaviour
             }
         }
         //then disable when we are very far from the player (3x distance or so from original value), as we go offscreen
-        if (Vector3.Distance(this.transform.position, GameMaster.instance.PlayerScreenObject.transform.position) >= ActivatorDistance * 3f && activated && !deactivated)
+        if (Vector3.Distance(this.transform.position, GameMaster.instance.PlayerScreenObject.transform.position) >= ActivatorDistance * ActivatorDeactivateMultiplier && activated && !deactivated)
         {
             deactivated = true; 
             foreach (GameObject g in childrenGameObjects)

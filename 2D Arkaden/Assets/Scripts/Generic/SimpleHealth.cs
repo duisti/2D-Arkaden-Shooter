@@ -8,7 +8,7 @@ public class SimpleHealth : MonoBehaviour
     public float Health = 15f;
     float maxHealth;
     bool dead;
-    GameObject DeathPrefab;
+    public List<GameObject> DeathPrefabs = new List<GameObject>();
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,9 +38,15 @@ public class SimpleHealth : MonoBehaviour
     void OnDeath()
     {
         dead = true;
-        if (DeathPrefab != null)
+        if (DeathPrefabs.Count != 0)
         {
-            Instantiate(DeathPrefab, transform.position, Quaternion.identity);
+            foreach (GameObject g in DeathPrefabs)
+            {
+                if (g != null)
+                {
+                    Instantiate(g, transform.position + new Vector3(0, 0, -1f), Quaternion.identity);
+                }
+            }
         }
         GameMaster.instance.AddLevelScore(Score);
         Destroy(this.gameObject);

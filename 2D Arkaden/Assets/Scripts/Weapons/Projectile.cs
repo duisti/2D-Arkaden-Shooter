@@ -19,10 +19,28 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     WeaponStats weaponStats;
     bool initialized;
+
+    Vector2 startPos;
+    [Tooltip("False = Ignore OOB")]
+    public bool outOfBounds = false;
+    float outOfBoundsTimer = 5f;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        startPos = transform.position;
+    }
     void Start()
     {
         Init();
+        if (outOfBounds)
+        {
+            outOfBoundsTimer = outOfBoundsTimer / Speed;
+            outOfBounds = false;
+        }else
+        {
+            outOfBoundsTimer = 20f;
+        }
+        
     }
 
     void Init()
@@ -45,10 +63,34 @@ public class Projectile : MonoBehaviour
     {
         if (!initialized)
         {
-            Init(); 
+            Init();
+        }
+        if (outOfBounds)
+        {
+            outOfBoundsTimer -= Time.deltaTime;
+            if (outOfBoundsTimer <= 0f)
+            {
+                DestroyThis();
+            }
+        }
+        Vector2 originalPos = transform.position;
+        if (GameMaster.instance != null)
+        {
+            if (GameMaster.instance.CameraBounds != null)
+            {
+                //float theLargerNumber = Mathf.Max(GameMaster.instance.CameraBounds.size.x, GameMaster.instance.CameraBounds.size.y);
+                //theLargerNumber = Mathf.Max(theLargerNumber, (GameMaster.instance.CameraBounds.size.x + GameMaster.instance.CameraBounds.size.y) / 2f);
+                //if (Vector2.Distance(startPos, transform.position) >= theLargerNumber * 1.5f)
+                //{
+                //    DestroyThis();
+                //}
+                if (!GameMaster.instance.CameraBounds.bounds.Contains((Vector3)originalPos + new Vector3(0, 0, GameMaster.instance.CameraBounds.transform.position.z)))
+                {
+                    outOfBounds = true;
+                }
+            }
         }
         float stepDist = Speed * Time.deltaTime;
-        Vector2 originalPos = transform.position;
         Vector2 destinationPos = transform.position + transform.right * stepDist;
         transform.position = destinationPos;
 

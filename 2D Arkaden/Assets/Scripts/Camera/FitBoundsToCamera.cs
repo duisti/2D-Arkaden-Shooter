@@ -17,6 +17,8 @@ public class FitBoundsToCamera : MonoBehaviour
             Bounds = this.GetComponent<BoxCollider2D>();
         }
         AttachedCamera = this.transform.parent.GetComponent<Camera>();
+        //move the bounds up one hierarchy, since otherwise we screw up camera shake
+        this.transform.parent = AttachedCamera.transform.parent;
     }
     void Start()
     {

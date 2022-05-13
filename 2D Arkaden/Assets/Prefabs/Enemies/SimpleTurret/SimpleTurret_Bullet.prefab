@@ -97,9 +97,8 @@ GameObject:
   - component: {fileID: 8331167907262408686}
   - component: {fileID: 1586243941}
   - component: {fileID: 2799071923161347639}
-  - component: {fileID: -4660886557188307221}
   m_Layer: 13
-  m_Name: Minigunner_Bullet
+  m_Name: SimpleTurret_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +136,6 @@ MonoBehaviour:
   Speed: 15
   ownerScript: {fileID: 0}
   weaponStats: {fileID: 0}
-  outOfBounds: 1
 --- !u!114 &8331167907262408686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,16 +180,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.06
---- !u!114 &-4660886557188307221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1038380688938714615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 112976a4ada3e89408490fa367bc6bb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Impulse: 0.05

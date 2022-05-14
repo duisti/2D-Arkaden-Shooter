@@ -24,6 +24,13 @@ public class GameMaster : MonoBehaviour
     [HideInInspector]
     public PlayerPath PlayersPath;
 
+    [HideInInspector]
+    public FramerateCalculator FramerateCalculator;
+    [HideInInspector]
+    public ControlManager ControlManager;
+    [HideInInspector]
+    public CameraShaker CameraShaker;
+
     float currentLevelScore = 0f;
     float savedLevelScore = 0f;
 
@@ -31,11 +38,17 @@ public class GameMaster : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
             Destroy(this);
+            Destroy(this.gameObject);
+            return;
         }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        FramerateCalculator = GetComponent<FramerateCalculator>();
+        ControlManager = GetComponent<ControlManager>();
+        CameraShaker = GetComponent<CameraShaker>();
     }
 
     // Start is called before the first frame update
@@ -50,8 +63,9 @@ public class GameMaster : MonoBehaviour
         if (PlayersCamera == null)
         {
             PlayersCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            CameraBounds = GameObject.FindGameObjectWithTag("CameraBounds").GetComponent<BoxCollider2D>();
+            return;
         }
+        CameraBounds = GameObject.FindGameObjectWithTag("CameraBounds").GetComponent<BoxCollider2D>();
     }
 
     public void SaveLevelScore()

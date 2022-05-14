@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraVerticalMovement : MonoBehaviour
 {
 
+    [SerializeField]
     Transform playerTransform;
+    [SerializeField]
     Transform cameraPivot;
     [Tooltip("The maximum amount the camera can adjust up/down from its Y LocalTransform.")]
     public float MaxVerticalDistance = 0f;

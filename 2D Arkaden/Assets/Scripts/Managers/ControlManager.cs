@@ -19,11 +19,12 @@ public class ControlManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (ControlManager.instance != null)
         {
             Destroy(this);
+            Destroy(this.gameObject);
         }
-        instance = this;
+        ControlManager.instance = this;
     }
     void Start()
     {

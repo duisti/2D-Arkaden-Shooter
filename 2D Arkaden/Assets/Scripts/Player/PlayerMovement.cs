@@ -13,11 +13,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Vector2 lastVelocity; // save previous velocity / direction
 
-    [HideInInspector] //hides the values in inspector (public variables show up on inspector, reduce clutter)
+     //hides the values in inspector (public variables show up on inspector, reduce clutter)
     public float XInput;
-    [HideInInspector]
     public float YInput; //we don't apply input directly to the values we want, instead we read them from these variables. Reason: Multiple control possibilities
                          //(virtual joystick, testing with keyboard etc..)
+    [SerializeField]
     BoxCollider2D CameraBounds;
 
     [HideInInspector]
@@ -53,19 +53,21 @@ public class PlayerMovement : MonoBehaviour
 
     void FindCameraBounds()
     {
-        CameraBounds = GameObject.FindGameObjectWithTag("CameraBounds").GetComponent<BoxCollider2D>();
+        CameraBounds = GameMaster.instance.CameraBounds;
     }
 
     void ReadInput()
     {
         XInput = ControlManager.instance.XInput;
         YInput = ControlManager.instance.YInput;
+        print("" + ControlManager.instance.gameObject.name);
     }
     void Update()
     {
         if (CameraBounds == null)
         {
             FindCameraBounds();
+            return;
         }
 
         ReadInput();

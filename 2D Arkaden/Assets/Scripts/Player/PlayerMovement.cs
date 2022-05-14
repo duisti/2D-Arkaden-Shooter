@@ -58,8 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     void ReadInput()
     {
-        XInput = ControlManager.instance.XInput;
-        YInput = ControlManager.instance.YInput;
+        XInput = GameMaster.instance.ControlManager.XInput;
+        YInput = GameMaster.instance.ControlManager.YInput;
         print("" + GameMaster.instance.ControlManager.gameObject.name);
     }
     void Update()

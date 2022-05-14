@@ -32,15 +32,24 @@ public class SimpleMoveForward : MonoBehaviour
         }
         else if (Direction == MoveDirection.Right)
         {
-            if (spriteRoot != null) spriteRoot.localScale = new Vector3(originalScale.x, originalScale.y * -1, originalScale.z);
+            if (spriteRoot != null) spriteRoot.localScale = originalScale; //spriteRoot.localScale = new Vector3(originalScale.x, originalScale.y * -1, originalScale.z);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = transform.right * transform.localScale.x;
-        Vector3 newPos = transform.position + dir * (Speed * Time.deltaTime);
+        float calcedSpeed = Speed * Time.deltaTime;
+        if (GameMaster.instance != null && GameMaster.instance.PlayersPath != null)
+        {
+            if (Direction == MoveDirection.Right)
+            {
+                calcedSpeed += GameMaster.instance.PlayersPath.currentSpeed * Time.deltaTime;
+            }
+        }
+        Vector3 dir = (transform.right * transform.localScale.x) * calcedSpeed;
+        Vector3 newPos = transform.position + dir;
+        /*
         if (GameMaster.instance != null)
         {
             if (GameMaster.instance.PlayersPath != null)
@@ -48,6 +57,7 @@ public class SimpleMoveForward : MonoBehaviour
                 newPos += new Vector3(GameMaster.instance.PlayersPath.currentSpeed, 0, 0) * Time.deltaTime;
             }
         }
+        */
         /*
         if (Direction == MoveDirection.Left)
         {
@@ -61,11 +71,14 @@ public class SimpleMoveForward : MonoBehaviour
         
         if (spriteRoot != null)
         {
-            if (newPos.x < transform.position.x)
+            if (!Mathf.Approximately(newPos.x, transform.position.x))
             {
-                spriteRoot.localScale = new Vector3(originalScale.x, originalScale.y *-1, originalScale.z);
+                if (newPos.x < transform.position.x)
+                {
+                    spriteRoot.localScale = new Vector3(originalScale.x, originalScale.y * -1, originalScale.z);
+                }
+                else spriteRoot.localScale = originalScale;
             }
-            else spriteRoot.localScale = originalScale;
         }
         
         transform.position = newPos;

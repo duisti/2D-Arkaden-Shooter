@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  OnDeathPrefab: {fileID: 0}
+  OnDeathPrefab: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d,
+    type: 3}
   CollidesWith:
     serializedVersion: 2
     m_Bits: 2176
@@ -102,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 8880773611180468940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.643, y: 0, z: -0.03731975}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.25, y: 0.13, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8880773611235356695}
@@ -172,7 +173,6 @@ GameObject:
   - component: {fileID: 8880773611235356696}
   - component: {fileID: 900821899173566713}
   - component: {fileID: 8041923031361209710}
-  - component: {fileID: 1411287241}
   - component: {fileID: 8856775315527989875}
   m_Layer: 12
   m_Name: Turret_AimerOffset
@@ -212,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivateAfterSeconds: 1
   TrackingSpeed: 50
+  DeactivateAfter: 0
+  AngleLimit: {fileID: 0}
 --- !u!114 &900821899173566713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 150
-  Health: 15
+  Health: 20
   DeathPrefabs:
   - {fileID: 1828176872806910, guid: 0130252a66e97a74cb94524d9e01031f, type: 3}
 --- !u!58 &8041923031361209710
@@ -244,21 +246,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1411287241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8880773611235356694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be62f7d5bc182e442bef9d70f4ab0f83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Score: 150
-  Health: 20
-  DeathPrefabs: []
 --- !u!114 &8856775315527989875
 MonoBehaviour:
   m_ObjectHideFlags: 0

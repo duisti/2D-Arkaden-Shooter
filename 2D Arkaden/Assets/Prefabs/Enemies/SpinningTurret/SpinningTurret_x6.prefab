@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 1000
-  Health: 100
+  Health: 115
   DeathPrefabs:
   - {fileID: 5741135681590841421, guid: b9a9b781df616cd499115fa235c88509, type: 3}
 --- !u!58 &1477637617426682262
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a9128ac013df241a57dfdb0b89622b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 45
 --- !u!1 &1586587804692326767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,20 +1206,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4877858846063947170}
     m_Modifications:
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Score
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 900821899173566713, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Health
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: Cooldown
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: RaycastDistance
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6029372470928936879, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Damage
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8880773611180468942, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: TrackingSpeed
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
@@ -1306,20 +1329,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5286711459484475337}
     m_Modifications:
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Score
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 900821899173566713, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Health
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: Cooldown
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: RaycastDistance
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6029372470928936879, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Damage
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8880773611180468942, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: TrackingSpeed
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
@@ -1406,20 +1452,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7542572226822006574}
     m_Modifications:
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Score
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 900821899173566713, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Health
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: Cooldown
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: RaycastDistance
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6029372470928936879, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Damage
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8880773611180468942, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: TrackingSpeed
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
@@ -1506,20 +1575,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 537411816746369820}
     m_Modifications:
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Score
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 900821899173566713, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Health
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: Cooldown
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: RaycastDistance
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6029372470928936879, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Damage
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8880773611180468942, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: TrackingSpeed
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
@@ -1606,20 +1698,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4489755121833359873}
     m_Modifications:
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Score
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 900821899173566713, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Health
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: Cooldown
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: RaycastDistance
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6029372470928936879, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Damage
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8880773611180468942, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: TrackingSpeed
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
@@ -1706,20 +1821,43 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8587801636802289551}
     m_Modifications:
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Score
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411287241, guid: 2007e83fd53e60e40ad06d24107944d6, type: 3}
+      propertyPath: Health
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 900821899173566713, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Health
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: Cooldown
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1006094780682412394, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: RaycastDistance
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6029372470928936879, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: Damage
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8880773611180468942, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
+        type: 3}
+      propertyPath: TrackingSpeed
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8880773611235356696, guid: 2007e83fd53e60e40ad06d24107944d6,
         type: 3}

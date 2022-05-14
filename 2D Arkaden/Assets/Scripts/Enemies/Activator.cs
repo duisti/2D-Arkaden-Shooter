@@ -17,7 +17,8 @@ public class Activator : MonoBehaviour
 
     public bool zeroTheY = true;
 
-    List<GameObject> childrenGameObjects = new List<GameObject>();
+    [SerializeField]
+    public List<GameObject> childrenGameObjects = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {

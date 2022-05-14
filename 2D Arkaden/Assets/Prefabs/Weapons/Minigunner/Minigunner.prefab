@@ -83,8 +83,8 @@ MonoBehaviour:
   - {fileID: 95316216030605440, guid: d9838d34150a9f4459f69d79a5017122, type: 3}
   - {fileID: 1038380688938714615, guid: 251a8e069ef3d2d48b9c9b5d359db9cc, type: 3}
   Stats: {fileID: 0}
-  Cooldown: 0.125
-  HeatGenerated: 0.5
+  Cooldown: 0.1
+  HeatGenerated: 0.4
   inputHotkey: Fire1
 --- !u!114 &4183893348770424603
 MonoBehaviour:

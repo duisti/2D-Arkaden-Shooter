@@ -8,6 +8,9 @@ public class AiFireWeapon : MonoBehaviour
     public List<GameObject> Prefabs;
     public float Cooldown = 1f;
     float cooldownTimer;
+    [Tooltip("Attempt to shoot this many times, then can no longer shoot. Useful for hit&run enemies. Zero(0) = no clipsize")]
+    public int ClipSize = 0;
+    bool hasClip = false;
 
     public float RaycastDistance = 100f;
 
@@ -34,7 +37,10 @@ public class AiFireWeapon : MonoBehaviour
             return;
 
         }
-
+        if (ClipSize > 0)
+        {
+            hasClip = true;
+        }
         LoopingFireSound = GetComponent<AudioSource>();
     }
     void FireWeapon()
@@ -53,6 +59,10 @@ public class AiFireWeapon : MonoBehaviour
             {
                 attach.Attach(this.transform);
             }
+        }
+        if (hasClip)
+        {
+            ClipSize--;
         }
     }
 
@@ -73,6 +83,7 @@ public class AiFireWeapon : MonoBehaviour
 
     bool RaycastCheck()
     {
+        if (ClipSize <= 0 && hasClip) return false;
         var hit = Physics2D.Raycast(transform.position, transform.right, RaycastDistance, RaycastLayers);
         if (hit.collider != null)
         {

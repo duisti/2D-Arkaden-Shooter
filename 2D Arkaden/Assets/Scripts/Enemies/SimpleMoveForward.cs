@@ -6,7 +6,7 @@ public class SimpleMoveForward : MonoBehaviour
 {
     public enum MoveDirection
     {
-        Left, Right
+        Left, Right, None
     }
 
     public MoveDirection Direction = MoveDirection.Left; //default, as enemies come towards us
@@ -49,27 +49,9 @@ public class SimpleMoveForward : MonoBehaviour
         }
         Vector3 dir = (transform.right * transform.localScale.x) * calcedSpeed;
         Vector3 newPos = transform.position + dir;
-        /*
-        if (GameMaster.instance != null)
-        {
-            if (GameMaster.instance.PlayersPath != null)
-            {
-                newPos += new Vector3(GameMaster.instance.PlayersPath.currentSpeed, 0, 0) * Time.deltaTime;
-            }
-        }
-        */
-        /*
-        if (Direction == MoveDirection.Left)
-        {
-            spriteRoot.localScale = new Vector3(originalScale.x * -1, originalScale.y, originalScale.z);
-        }
-        else if (Direction == MoveDirection.Right)
-        {
-            spriteRoot.localScale = new Vector3(originalScale.x * 1, originalScale.y, originalScale.z);
-        }
-        */
         
-        if (spriteRoot != null)
+        
+        if (spriteRoot != null && Direction != MoveDirection.None)
         {
             if (!Mathf.Approximately(newPos.x, transform.position.x))
             {

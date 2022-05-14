@@ -44,7 +44,7 @@ public class SimpleHealth : MonoBehaviour
             {
                 if (g != null)
                 {
-                    Instantiate(g, transform.position + new Vector3(0, 0, -1f), Quaternion.identity);
+                    Instantiate(g, transform.position + new Vector3(0, 0, 0), Quaternion.identity);
                 }
             }
         }

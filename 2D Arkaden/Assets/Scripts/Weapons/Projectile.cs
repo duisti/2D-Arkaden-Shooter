@@ -129,18 +129,60 @@ public class Projectile : MonoBehaviour
         if (hit != null)
         {
             var hitGo = hit.transform.gameObject;
-            PlayerStats playerStats = hitGo.GetComponent<PlayerStats>();
-            SimpleHealth simpleHealth = hitGo.GetComponent<SimpleHealth>();
-            if (playerStats != null)
+            if (!weaponStats.AreaOfEffect)
             {
-                playerStats.DamageHealth(weaponStats.GetDamage());
+                ApplyDamageSingle(hitGo);
             }
-            else if (simpleHealth != null)
+            else
             {
-                simpleHealth.DamageHealth(weaponStats.GetDamage());
+                ApplyDamageAoE(transform.position);
             }
             //in the end, destroy
             DestroyThis();
+        }
+    }
+    void ApplyDamageSingle(GameObject g)
+    {
+        PlayerStats playerStats = g.GetComponent<PlayerStats>();
+        SimpleHealth simpleHealth = g.GetComponent<SimpleHealth>();
+        float realDamage = weaponStats.GetDamage();
+        if (playerStats != null)
+        {
+            playerStats.DamageHealth(realDamage);
+        }
+        else if (simpleHealth != null)
+        {
+            simpleHealth.DamageHealth(realDamage);
+        }
+    }
+    void ApplyDamageAoE(Vector2 pos)
+    {
+        var hits = Physics2D.OverlapCircleAll(pos, weaponStats.GetRadius(), weaponStats.CollidesWith);
+        if (hits.Length != 0)
+        {
+            foreach (Collider2D contact in hits)
+            {
+                if (contact.transform != this.transform)
+                {
+                    PlayerStats playerStats = contact.transform.GetComponent<PlayerStats>();
+                    SimpleHealth simpleHealth = contact.transform.GetComponent<SimpleHealth>();
+                    float realDamage = weaponStats.GetDamage();
+                    if (weaponStats.GetFallOff())
+                    {
+                        realDamage = realDamage - (realDamage * weaponStats.GetRadius() / Vector2.Distance(transform.position, contact.transform.position));
+                        realDamage = Mathf.Clamp(realDamage, 0f, realDamage);
+                    }
+                    realDamage += realDamage * weaponStats.GetSplashPercent();
+                    if (playerStats != null)
+                    {
+                        playerStats.DamageHealth(realDamage);
+                    }
+                    else if (simpleHealth != null)
+                    {
+                        simpleHealth.DamageHealth(realDamage);
+                    }
+                }
+            }
         }
     }
 
@@ -180,33 +222,10 @@ public class Projectile : MonoBehaviour
 
             if (!weaponStats.AreaOfEffect)
             {
-                PlayerStats playerStats = closestTarget.GetComponent<PlayerStats>();
-                SimpleHealth simpleHealth = closestTarget.GetComponent<SimpleHealth>();
-                if (playerStats != null)
-                {
-                    playerStats.DamageHealth(weaponStats.GetDamage());
-                }
-                else if (simpleHealth != null)
-                {
-                    simpleHealth.DamageHealth(weaponStats.GetDamage());
-
-                }
+                ApplyDamageSingle(closestTarget);
             } else
             {
-                foreach (GameObject g in possibleTargets)
-                {
-                    PlayerStats playerStats = g.GetComponent<PlayerStats>();
-                    SimpleHealth simpleHealth = g.GetComponent<SimpleHealth>();
-                    if (playerStats != null)
-                    {
-                        playerStats.DamageHealth(weaponStats.GetDamage());
-                    }
-                    else if (simpleHealth != null)
-                    {
-                        simpleHealth.DamageHealth(weaponStats.GetDamage());
-
-                    }
-                }
+                ApplyDamageAoE(transform.position);
             }
             //in the end, destroy
             DestroyThis();

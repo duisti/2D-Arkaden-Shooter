@@ -14,6 +14,8 @@ public class SimpleCollision : MonoBehaviour
 
     public LayerMask CollidesWith = 128; //128 is default for player only
     List<Collider2D> alreadyContacted = new List<Collider2D>();
+
+    public List<GameObject> CollisionEffect = new List<GameObject>();
     void Start()
     {
         ourCollider = GetComponent<Collider2D>();
@@ -29,9 +31,16 @@ public class SimpleCollision : MonoBehaviour
         {
             foreach (Collider2D contact in hits)
             {
-                if (!alreadyContacted.Contains(contact))
+                if (!alreadyContacted.Contains(contact) && contact.transform != this.transform)
                 {
                     alreadyContacted.Add(contact);
+                    if (CollisionEffect.Count != 0)
+                    {
+                        foreach (GameObject g in CollisionEffect)
+                        {
+                            Instantiate(g, contact.transform.position, Quaternion.identity);
+                        }
+                    }
                     //find scripts and add damage
                     PlayerStats playerhealth = contact.gameObject.GetComponent<PlayerStats>();
                     SimpleHealth simplehealth = contact.gameObject.GetComponent<SimpleHealth>();

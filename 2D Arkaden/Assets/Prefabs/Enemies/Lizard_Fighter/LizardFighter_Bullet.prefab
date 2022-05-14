@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1038380688569809783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.32, y: 0.2, z: 0.32}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1038380688938714614}
   m_RootOrder: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: c60d934701d6be943991ad7e32e103e5, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.9509139, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3ca92640f67aef34c9b34b2ea91c9ef7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1586243941}
   - component: {fileID: 2799071923161347639}
   m_Layer: 13
-  m_Name: LizardScout_Bullet
+  m_Name: LizardFighter_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e193f434c6e1d9419bb272592f5145f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionDetection: 1
-  Speed: 5
+  CollisionDetection: 2
+  Speed: 10
   ownerScript: {fileID: 0}
   weaponStats: {fileID: 0}
   outOfBounds: 0
@@ -180,4 +180,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.06
+  m_Radius: 0.04

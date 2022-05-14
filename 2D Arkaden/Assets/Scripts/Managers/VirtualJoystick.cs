@@ -47,21 +47,21 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     void RelayData(float x, float y)
     {
-        ControlManager.instance.SetVJoyStickInput(x, y);
+        GameMaster.instance.ControlManager.SetVJoyStickInput(x, y);
     }
 
     //need to copy-paste'ish because unity's event system can only take 1 arg through the editor
     public void FireButton1(bool pressed) //"Fire1, Fire2, Fire3"
     {
-        ControlManager.instance.ButtonPush(pressed, "Fire1");
+        GameMaster.instance.ControlManager.ButtonPush(pressed, "Fire1");
     }
     public void FireButton2(bool pressed) //"Fire1, Fire2, Fire3"
     {
-        ControlManager.instance.ButtonPush(pressed, "Fire2");
+        GameMaster.instance.ControlManager.ButtonPush(pressed, "Fire2");
     }
     public void FireButton3(bool pressed) //"Fire1, Fire2, Fire3"
     {
-        ControlManager.instance.ButtonPush(pressed, "Fire3");
+        GameMaster.instance.ControlManager.ButtonPush(pressed, "Fire3");
     }
 
     public void OnDrag(PointerEventData data)

@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         XInput = ControlManager.instance.XInput;
         YInput = ControlManager.instance.YInput;
-        print("" + ControlManager.instance.gameObject.name);
+        print("" + GameMaster.instance.ControlManager.gameObject.name);
     }
     void Update()
     {

@@ -9,9 +9,9 @@ public class SimpleScreenShakeOnStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (CameraShaker.instance != null)
+        if (GameMaster.instance.CameraShaker != null)
         {
-            CameraShaker.instance.AddShake(Impulse);
+            GameMaster.instance.CameraShaker.AddShake(Impulse);
         }
     }
 

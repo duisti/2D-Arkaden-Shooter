@@ -14,6 +14,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     bool isEnabled;
 
+    bool AlwaysShow = true; //DEBUG ONLY
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +40,8 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
             isEnabled = true;
         } else
         {
-            Root.SetActive(false);
-            isEnabled = false;
+            Root.SetActive(AlwaysShow);
+            isEnabled = AlwaysShow;
             return;
         }
     }

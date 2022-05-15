@@ -25,6 +25,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     bool dead = false; // below zero = dead
+    public List<GameObject> DeathPrefabs = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +82,13 @@ public class PlayerStats : MonoBehaviour
     void DoDeath()
     {
         gameObject.SetActive(false); //for now just delete character by disabling it
+        if (DeathPrefabs.Count != 0)
+        {
+            foreach(GameObject g in DeathPrefabs)
+            {
+                Instantiate(g, transform.position, Quaternion.identity);
+            }
+        }
         return;
     }
 
@@ -88,7 +96,6 @@ public class PlayerStats : MonoBehaviour
     {
         if (Health <= Mathf.Epsilon) // epsilon = 0.000000000000000000000000000000000000000000000000000000001f
         {
-            dead = true;
             DoDeath();
             return true;
         }
@@ -111,5 +118,10 @@ public class PlayerStats : MonoBehaviour
     {
         heatStopTimer = stopTime + 0.25f; // ideally weapon cooldown plus .25 seconds
         Heat = Mathf.Max(0, Heat + amount);
+    }
+
+    public bool GetDeathStatus()
+    {
+        return dead;
     }
 }

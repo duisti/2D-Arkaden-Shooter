@@ -79,9 +79,9 @@ public class WeaponFireScript : MonoBehaviour
         if (Stats == null) return;
         cooldownTimer = Mathf.Max(0, cooldownTimer - Time.deltaTime);
         //some repetition here because i got lazy (could've made a struct but cba)
-        if (((inputHotkey == "Fire1" && ControlManager.instance.Fire1) ||
-            (inputHotkey == "Fire2" && ControlManager.instance.Fire2) ||
-            (inputHotkey == "Fire3" && ControlManager.instance.Fire3))
+        if (((inputHotkey == "Fire1" && GameMaster.instance.ControlManager.Fire1) ||
+            (inputHotkey == "Fire2" && GameMaster.instance.ControlManager.Fire2) ||
+            (inputHotkey == "Fire3" && GameMaster.instance.ControlManager.Fire3))
             && !Stats.Overheated)
         {
             attemptingToFire = true;

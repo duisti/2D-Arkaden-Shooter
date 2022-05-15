@@ -426,6 +426,7 @@ MonoBehaviour:
   CollidesWith:
     serializedVersion: 2
     m_Bits: 128
+  CollisionEffect: []
 --- !u!114 &8266557033188042933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 180
+  SpeedRange: []
   startAfter: 2
   stopAfter: 1
 --- !u!114 &2898250134732247285

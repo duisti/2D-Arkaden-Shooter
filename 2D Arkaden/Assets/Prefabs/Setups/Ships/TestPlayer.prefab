@@ -428,6 +428,7 @@ MonoBehaviour:
   lastVelocity: {x: 0, y: 0}
   XInput: 0
   YInput: 0
+  CameraBounds: {fileID: 0}
   PositionsBuffer: 10
   LastPositions: []
   layerCheck:
@@ -455,6 +456,8 @@ MonoBehaviour:
   MaxSpeed: 5
   Acceleration: 30
   dead: 0
+  DeathPrefabs:
+  - {fileID: 1828176872806910, guid: 0130252a66e97a74cb94524d9e01031f, type: 3}
 --- !u!58 &3293855114592564485
 CircleCollider2D:
   m_ObjectHideFlags: 0
